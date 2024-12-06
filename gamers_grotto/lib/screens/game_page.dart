@@ -32,7 +32,10 @@ class GamePageState extends State<GamePage> {
   TextEditingController chatController = TextEditingController();
 
   Map<String, Map<String, double>> roomBounds = {
-    "trollcorner": {"x1": 0.0, "y1": 100.0, "x2": 50.0, "y2": 200}
+    "trollgarden": {"x1": 20.0, "y1": 100.0, "x2": 70.0, "y2": 200},
+    "dragon'sden": {"x1": 250.0, "y1": 100.0, "x2": 270.0, "y2": 200},
+    "trollhole": {"x1": 250.0, "y1": 200.0, "x2": 270.0, "y2": 400},
+    "darkpit": {"x1": 20.0, "y1": 200.0, "x2": 70.0, "y2": 400}
   };
   List<Map<String, double>> playerTarget = [
     {"x": 500.0, "y": 250.0}
@@ -99,11 +102,44 @@ class GamePageState extends State<GamePage> {
     List<Widget> finalList = [
       Positioned(
           top: 100,
+          left: 20,
           child: Container(
               color: Colors.green,
               width: 50,
               height: 100,
-              child: const Text("TrollGarden")))
+              child: const Text("TrollGarden")
+              )
+            ),
+      Positioned(
+        top: 250,
+        left: 20,
+        child: Container(
+          color: Colors.grey,
+          width: 50,
+          height: 100,
+          child: const Text("DarkPit")
+        )
+      ),
+      Positioned(
+        top: 250,
+        left: 250,
+        child: Container(
+          color: Colors.brown,
+          width: 50,
+          height: 100,
+          child: const Text("TrollHole")
+        )
+      ),
+      Positioned(
+        top: 100,
+        left: 250,
+        child: Container(
+          color: Colors.blue,
+          width: 50,
+          height: 100,
+          child: const Text("Dragon'sDen")
+        )
+      )
     ];
     for (var element in currentPlayers.values) {
       finalList.add(PlayerAvatar(element.name, element.message,

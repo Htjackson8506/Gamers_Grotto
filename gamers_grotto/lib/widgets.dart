@@ -43,7 +43,7 @@ class PlayerAvatar extends StatelessWidget {
   final double y;
   getMessage() {
     if (this.chatMessage != "") {
-      print(this.chatMessage);
+      //print(this.chatMessage);
     }
     return this.chatMessage;
   }
