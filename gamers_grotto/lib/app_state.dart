@@ -110,6 +110,7 @@ class ApplicationState extends ChangeNotifier {
   void switchPlayer(String newRoom, String oldRoom, String playerName) {
     Player player = players[playerName]!;
     print(player);
+    print (newRoom);
     removePlayer(oldRoom, playerName);
     addPlayer(player, newRoom);
   }

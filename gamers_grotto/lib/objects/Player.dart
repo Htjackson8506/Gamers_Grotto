@@ -22,6 +22,14 @@ class Player {
     }
   }
 
+  double getX() {
+    return x;
+  }
+
+  double getY() {
+    return y;
+  }
+
   String toString() {
     return this.name;
   }

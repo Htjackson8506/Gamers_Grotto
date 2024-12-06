@@ -30,19 +30,34 @@ class GamePage extends StatefulWidget {
 
 class GamePageState extends State<GamePage> {
   TextEditingController chatController = TextEditingController();
+  
+  Map<String, Color> roomColors = {
+    "mainroom": Colors.amber, 
+    "trollgarden": Colors.green,
+    "dragon'sden": Colors.blue,
+    "trollhole": Colors.brown,
+    "darkpit": Colors.grey,
+  };
 
   Map<String, Map<String, double>> roomBounds = {
     "trollgarden": {"x1": 20.0, "y1": 100.0, "x2": 70.0, "y2": 200},
     "dragon'sden": {"x1": 250.0, "y1": 100.0, "x2": 270.0, "y2": 200},
-    "trollhole": {"x1": 250.0, "y1": 200.0, "x2": 270.0, "y2": 400},
-    "darkpit": {"x1": 20.0, "y1": 200.0, "x2": 70.0, "y2": 400}
+    "trollhole": {"x1": 250.0, "y1": 250.0, "x2": 270.0, "y2": 450},
+    "darkpit": {"x1": 20.0, "y1": 250.0, "x2": 70.0, "y2": 450}
   };
   List<Map<String, double>> playerTarget = [
-    {"x": 500.0, "y": 250.0}
+    {"x": 0, "y": 0}
   ];
   double moveSpeed = 15;
   String currentRoom = "mainroom";
 
+  getRoomColor(String roomName){
+    for (var element in roomColors.entries) {
+      if (element == roomName) {
+        return element.value;
+      }
+    }
+  }
   checkRoomCollision(double x, double y) {
     for (var element in roomBounds.entries) {
       var bounds = element.value;
@@ -192,7 +207,7 @@ class GamePageState extends State<GamePage> {
           ),
         ],
       ),
-      body: GameScreen(players: getPlayers(), doMove: setTarget),
+      body: GameScreen(players: getPlayers(), doMove: setTarget, currentRoom: checkRoomCollision(currentPlayer.getX, currentPlayer.getY)),
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).colorScheme.primary,
         child: Padding(

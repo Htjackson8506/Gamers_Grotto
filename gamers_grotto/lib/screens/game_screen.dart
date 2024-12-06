@@ -4,14 +4,17 @@ import 'dart:ffi';
 import 'package:gamers_grotto/objects/Player.dart';
 
 import 'package:flutter/widgets.dart';
+import 'package:gamers_grotto/screens/game_page.dart';
 import 'package:gamers_grotto/widgets.dart';
 
 typedef movePlayer = Function(double x, double y);
 
 class GameScreen extends StatefulWidget {
-  GameScreen({super.key, required this.players, required this.doMove});
+  GameScreen({super.key, required this.players, required this.doMove, required this.currentRoom});
   movePlayer doMove;
   List<Widget> players = [];
+  String currentRoom;
+  
   @override
   State<StatefulWidget> createState() => GameScreenState();
 }
@@ -25,7 +28,7 @@ class GameScreenState extends State<GameScreen> {
     super.dispose();
     widget.doMove = empty;
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Container(
